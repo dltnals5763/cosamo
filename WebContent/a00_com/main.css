@@ -173,3 +173,25 @@
 #post-all-tab td:nth-child(2):hover{
 	text-decoration:underline;
 }
+#login{
+	border:1px solid #F5F5F5;
+	color:	#696969;
+	padding:10px;
+	margin-left:730px;
+	margin-right:5px;
+}
+#login:hover{
+	text-decoration:underline;	
+}
+#logout{
+	border:1px solid #F5F5F5;
+	color:	#696969;
+	padding:10px;
+	margin-left:720px;
+}
+#logout:hover{
+	text-decoration:underline;	
+}
+
+
+
