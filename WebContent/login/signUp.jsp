@@ -3,7 +3,8 @@
     import="java.util.*"
     import="jspexp.z01_vo.*"
     import="project.dao.login.*"
-    import="project.vo_join.*"%>
+    import="project.vo_join.*"
+    import="project.vo.login.Member"%>
 <% request.setCharacterEncoding("UTF-8");
 String path = request.getContextPath();
 %>
@@ -174,8 +175,10 @@ if(!customer_id.equals("")){
 }
 if((!name.equals(""))&&(!customer_id.equals(""))&&(!pw.equals(""))&&(!pw_confirm.equals(""))&&(!email.equals(""))&&(!phone.equals(""))&&(!address.equals(""))){
 	Customer cus = new Customer(customer_id, pw,name, address,email, phone);
+	Member mem = new Member(customer_id,pw,name,email,0,0,0);
 	DAO_login dao = new DAO_login();
 	dao.insertCustomer(cus);
+	dao.insertCustomer(mem);
 	forJoin = true;  // 회원가입 완료 시 . 
 }
 

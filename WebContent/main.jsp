@@ -54,8 +54,8 @@
 							<c:if test="${id!=null}"><li><span id="span-id">${id }</span>님</li></c:if>
 							<c:if test="${id==null }"><li><span id="span-id"> - </span></li></c:if>
 							<li>LEVEL<span id="span-level">GOLD</span></li>
-							<li>게시글 수<span id="span-write">10</span></li>
-							<li>댓글 수<span id="span-comment">20</span></li>
+							<li>게시글 수<span id="span-write">${mem.postcnt }</span></li>
+							<li>댓글 수<span id="span-comment">${mem.commentcnt }</span></li>
 						</ul>
 					</div>
 					<!-- info-data1 -->

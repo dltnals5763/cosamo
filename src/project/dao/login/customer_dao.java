@@ -40,8 +40,8 @@ public class customer_dao {
 		
 		try {
 			setCon();
-			String sql = "SELECT * FROM customer\r\n"
-					+ "WHERE customer_id = ? AND pw = ?" ;
+			String sql = "SELECT * FROM member\r\n"
+					+ "WHERE id = ? AND pass = ?" ;
 					
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,customer_id);

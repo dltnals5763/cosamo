@@ -1,14 +1,13 @@
 package project.dao.login;
 
 import java.sql.Connection;
-
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import project.vo.login.Member;
 import project.vo_join.Customer;
 
 public class DAO_login {
@@ -71,6 +70,75 @@ public class DAO_login {
 			return m;
 		}
 		
+		public Member login(Member login) {
+			Member m = null;
+			try {
+				setCon();
+				String sql = "SELECT * FROM MEMBER \n"
+						+ "WHERE id=? AND pass=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, login.getId());
+				pstmt.setString(2, login.getPass());
+				pstmt.executeQuery();
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					// String id, String pass, String name, String email, int postcnt, int commentcnt, int warncnt
+					m = new Member(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getInt(7)); 
+				}
+				System.out.println(m.getId());
+				rs.close();
+				pstmt.close();
+				con.close();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("DB에러");
+				System.out.println(e.getMessage());
+			} catch(Exception e) {
+				System.out.println("일반에러");
+				System.out.println(e.getMessage());
+			}
+			return m;
+		}
+		
+		// String id, String pass, String name, String email, int postcnt, int commentcnt, int warncnt
+		public void insertCustomer(Member ins){
+			// 1. 접속 autocommit(false) 
+			try {
+				setCon();
+				con.setAutoCommit(false);
+			// 2. 대화
+				String sql = "INSERT INTO member values(?,?,?,?,0,0,0)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, ins.getId());
+				pstmt.setString(2, ins.getPass());
+				pstmt.setString(3, ins.getName());
+				pstmt.setString(4, ins.getEmail());
+				System.out.println("#sql: "+sql);
+				pstmt.executeUpdate();
+			// 3. commit 
+				con.commit();
+				pstmt.close();
+				con.close();
+			
+			// 4. 예외처리 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("DB처리에러: "+e.getMessage());
+				try {
+					con.rollback();
+					System.out.println("에러발생으로 원복처리");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					System.out.println("rollback에 문제발생");
+				}
+			} catch(Exception e) {
+				System.out.println("일반에러: "+e.getMessage());
+			}
+		}
 		public void insertCustomer(Customer ins){
 			// 1. 접속 autocommit(false) 
 			try {
@@ -114,8 +182,8 @@ public class DAO_login {
 			boolean hasId=false;
 			try {
 				setCon();
-				String sql = "SELECT * FROM customer\n"
-						+ "WHERE customer_id=? ";
+				String sql = "SELECT * FROM member\n"
+						+ "WHERE id=? ";
 						
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, customer_id);
