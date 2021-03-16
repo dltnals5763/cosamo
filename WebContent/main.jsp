@@ -28,10 +28,9 @@
 </script>
 </head>
 <%
-	String id = (String)session.getAttribute("id");
 	String logout=request.getParameter("logout");
 	if(logout!=null&&logout.equals("y")){
-		session.setAttribute("id",null);
+		session.setAttribute("member",null);
 		// response.sendRedirect("login/login.jsp");
 	}
 %>
@@ -51,20 +50,20 @@
 					<!-- info-title -->
 					<div id="info-data1">
 						<ul>
-							<c:if test="${id!=null}"><li><span id="span-id">${id }</span>님</li></c:if>
-							<c:if test="${id==null }"><li><span id="span-id"> - </span></li></c:if>
-							<li>LEVEL<span id="span-level">GOLD</span></li>
-							<li>게시글 수<span id="span-write">${mem.postcnt }</span></li>
-							<li>댓글 수<span id="span-comment">${mem.commentcnt }</span></li>
+							<c:if test="${member!=null}"><li><span id="span-id">${member.id }</span>님</li></c:if>
+							<c:if test="${member==null }"><li><span id="span-id"> - </span></li></c:if>
+							<li>LEVEL<span id="span-level">${grade.grade}</span></li>
+							<li>게시글 수<span id="span-write">${member.postcnt }</span></li>
+							<li>댓글 수<span id="span-comment">${member.commentcnt }</span></li>
 						</ul>
 					</div>
 					<!-- info-data1 -->
-					<c:if test="${id==null }">
+					<c:if test="${member==null }">
 					<div id="join-box">
 						<div id="join-text" onclick="location.href='login/signUp.jsp'">카페 가입하기</div>
 					</div>
 					</c:if>
-					<c:if test="${id!=null}"><hr></c:if>
+					<c:if test="${member!=null}"><hr></c:if>
 					<!-- join-box -->
 					<div id="board-intro">
 						<ul>
@@ -117,8 +116,8 @@
 			<!-- left -->
 			<div id="mid">
 			
-				<c:if test="${id!=null }"><div id="logout" onclick="logout()">로그아웃</div></c:if>
-				<c:if test="${id==null }"><div id="login" onclick="location.href='${path}/login/login.jsp'">로그인</div></c:if>
+				<c:if test="${member!=null }"><div id="logout" onclick="logout()">로그아웃</div></c:if>
+				<c:if test="${member==null }"><div id="login" onclick="location.href='${path}/mainLeft.do'">로그인</div></c:if>
 				<div id="list">
 				<div id="announce">
 					<div id="announce-text">

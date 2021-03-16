@@ -5,17 +5,18 @@
     import ="project.vo.login.*"
     import ="project.dao.login.*"    
     %>
-<% request.setCharacterEncoding("UTF-8");
-String path = request.getContextPath();
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<c:set var="path" value="${pageContext.request.contextPath}"/> 
+<fmt:requestEncoding value="utf-8" /> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%-- path기준으로 모든 자원(css,img,js)를 접근하여 사용할 수 있다. --%>
-<link rel="stylesheet" href="<%=path %>/a00_com/reset.css"> 
-<link rel="stylesheet" href="<%=path %>/a00_com/main.css"> 
+<link rel="stylesheet" href="${path}/a00_com/reset.css">
+<link rel="stylesheet" href="${path}/a00_com/main.css">
 <title>Insert title here</title>
 <style>
 html, body
@@ -115,7 +116,7 @@ body
 %>
          <script>
             alert("로그인 정보가 올바르지 않습니다.");
-            location.href="login.jsp";
+            location.href="${path}/mainLeft.do";
          </script>
 <%
          }
@@ -123,7 +124,7 @@ body
 %>
 <body>
  <div id="banner">
-	<img id="banner" src="../image/image-main/cosamo.jpg" onclick="location.href='../main.jsp'">
+	<img id="banner" src="${path }/image/image-main/cosamo.jpg" onclick="location.href='${path}/main.jsp'">
 </div>
    <div id = "align">
    <div id ="loginbox">

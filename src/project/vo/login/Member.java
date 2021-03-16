@@ -8,10 +8,18 @@ public class Member {
 	private int postcnt;
 	private int commentcnt;
 	private int warncnt;
+	private String grade;
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Member(String id, String pass) {
+		super();
+		this.id = id;
+		this.pass = pass;
+	}
+
 	public Member(String id, String pass, String name, String email, int postcnt, int commentcnt, int warncnt) {
 		super();
 		this.id = id;
@@ -22,6 +30,21 @@ public class Member {
 		this.commentcnt = commentcnt;
 		this.warncnt = warncnt;
 	}
+	
+	
+	public Member(String id, String pass, String name, String email, int postcnt, int commentcnt, int warncnt,
+			String grade) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.email = email;
+		this.postcnt = postcnt;
+		this.commentcnt = commentcnt;
+		this.warncnt = warncnt;
+		this.grade = grade;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -63,6 +86,14 @@ public class Member {
 	}
 	public void setWarncnt(int warncnt) {
 		this.warncnt = warncnt;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	} 
 	
 	
