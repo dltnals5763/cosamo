@@ -31,6 +31,7 @@
 	String logout=request.getParameter("logout");
 	if(logout!=null&&logout.equals("y")){
 		session.setAttribute("member",null);
+		session.setAttribute("grade",null);
 		// response.sendRedirect("login/login.jsp");
 	}
 %>

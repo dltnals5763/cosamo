@@ -37,29 +37,29 @@ public class MainLeftController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// 1. 요청값 처리..
-				String id = request.getParameter("id"); 
-				String pass = request.getParameter("pass");
-				MainLeft_Dao dao = new MainLeft_Dao();
-				Member mem = dao.login(new Member(id,pass));
-				// 2. 모델 데이터 처리
-				//    1) 초기 페이지 - 초기 로그인 페이지 설정.
-				//    2) 입력 후 페이지. - 입력 후 정상일 때 페이지 설정.
-				if(id==null) id="";
-				if(pass==null) pass="";
-				String page = "login/login.jsp";
-				if(!id.equals("") && !pass.equals("") ) {
-					if(mem!=null) {
-					//	request.setAttribute("isSuccess", true);
-						// DB 연동의 경우, session값을 설정해서 model데이터를 매핑한다.
-						session.setAttribute("member", dao.login(mem));
-						session.setAttribute("grade", dao.getGrade(mem));
-						page="main.jsp";
-					}else {
-					//	request.setAttribute("isSuccess", false);
-					}
-				}	
-				// 3. 화면단 호출.
-				RequestDispatcher rd = request.getRequestDispatcher(page);
-				rd.forward(request, response);
+		String id = request.getParameter("id"); 
+		String pass = request.getParameter("pass");
+		MainLeft_Dao dao = new MainLeft_Dao();
+		Member mem = dao.login(new Member(id,pass));
+		// 2. 모델 데이터 처리
+		//    1) 초기 페이지 - 초기 로그인 페이지 설정.
+		//    2) 입력 후 페이지. - 입력 후 정상일 때 페이지 설정.
+		if(id==null) id="";
+		if(pass==null) pass="";
+		String page = "login/login.jsp";
+		if(!id.equals("") && !pass.equals("") ) {
+			if(mem!=null) {
+			//	request.setAttribute("isSuccess", true);
+				// DB 연동의 경우, session값을 설정해서 model데이터를 매핑한다.
+				session.setAttribute("member", dao.login(mem));
+				session.setAttribute("grade", dao.getGrade(mem));
+				page="main.jsp";
+			}else {
+			//	request.setAttribute("isSuccess", false);
+			}
+		}	
+		// 3. 화면단 호출.
+		RequestDispatcher rd = request.getRequestDispatcher(page);
+		rd.forward(request, response);
 	}
 }
