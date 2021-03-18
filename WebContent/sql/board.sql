@@ -9,6 +9,7 @@ CREATE TABLE board(
 	favor NUMBER,
 	content varchar2(4000) NOT NULL
 );
+
 SELECT * FROM board ORDER BY num desc;
 -- 글 등록
 INSERT INTO board(num,writer,title,category,readcount,favor,content)
