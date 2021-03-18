@@ -17,7 +17,7 @@ import project.vo_mypage.BoardExp;
 /**
  * Servlet implementation class myreplyController
  */
-@WebServlet(name = "myreply", urlPatterns = { "/myreply" })
+@WebServlet(name = "myreply.do", urlPatterns = { "/myreply.do" })
 public class myreplyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +30,7 @@ public class myreplyController extends HttpServlet {
     }
 
 	/**
-	 * http://localhost:7080/jspexp/myreply
+	 * http://localhost:7080/cosa/myreply.do
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,7 +50,7 @@ public class myreplyController extends HttpServlet {
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("count", c);
 		
-		String page = "inflearn\\proView\\myReply.jsp";
+		String page = "mypage\\myReply.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);
 		

@@ -9,12 +9,12 @@
 	width: 1050px;
     margin: 0 auto;
 }
-.frame02>.myInfoBox{
+.frame02 #info_form .myInfoBox{
     width: 700px;
     border-top: 2px solid black;
     margin:0 auto;
 }
-.frame02>.myInfoBox input[type=text]{
+.frame02 #info_form .myInfoBox input[type=text]{
 	width: 332px;
 	height: 44px;
     padding: 0 14px;
@@ -27,7 +27,7 @@
     outline: none;
     vertical-align: top;
 }
-.frame02>.myInfoBox input[type=password]{
+.frame02 #info_form .myInfoBox input[type=password]{
 	width: 332px;
 	height: 44px;
     padding: 0 14px;
@@ -40,7 +40,7 @@
     outline: none;
     vertical-align: top;
 }
-.frame02 .myInfoBox th{
+.frame02 #info_form .myInfoBox th{
     width: 159px;
     padding: 20px 0 0 20px;
     font-weight: 700;
@@ -50,7 +50,7 @@
     vertical-align: top;
     text-align: center;
 }
-.frame02 .myInfoBox td{
+.frame02 #info_form .myInfoBox td{
     padding: 10px 0;
     border-top: 0;
     font-size: 14px;
@@ -75,7 +75,7 @@
     background-color: #cd595a;
     color: #fff;
 }
-.frame02 .btn_update{
+.frame02 #update{
 	border: 0;
     border-radius: 3px;
     font-weight: 700;

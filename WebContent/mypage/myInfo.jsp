@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<c:set var="path" value="${pageContext.request.contextPath}"/> 
 <% request.setCharacterEncoding("UTF-8");
 	String path = request.getContextPath();
 %>  
@@ -9,101 +12,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypage Info</title>
-<link type ="text/css" rel="stylesheet" href="${path}/inflearn/proView/cssfile.css">
+<link type ="text/css" rel="stylesheet" href="${path}/mypage/cssfile.css">
 <script type="text/javascript" 
 	src="/jspexp/a00_com/jquery-3.5.1.js"></script>
-<style type="text/css">
-#frame01{
-	width: 70%;
-	margin:0 auto;
-    padding-bottom: 120px;
-}
-.frame02{
-	width: 1050px;
-    margin: 0 auto;
-}
-.frame02 #info_form .myInfoBox{
-    width: 700px;
-    border-top: 2px solid black;
-    margin:0 auto;
-}
-.frame02 #info_form .myInfoBox input[type=text]{
-	width: 332px;
-	height: 44px;
-    padding: 0 14px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    color: #333;
-    line-height: 20px;
-    border-radius: 3px;
-    background: #fff;
-    outline: none;
-    vertical-align: top;
-}
-.frame02 #info_form .myInfoBox input[type=password]{
-	width: 332px;
-	height: 44px;
-    padding: 0 14px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    color: #333;
-    line-height: 20px;
-    border-radius: 3px;
-    background: #fff;
-    outline: none;
-    vertical-align: top;
-}
-.frame02 #info_form .myInfoBox th{
-    width: 159px;
-    padding: 20px 0 0 20px;
-    font-weight: 700;
-    font-size: 14px;
-    color: #333;
-    line-height: 20px;
-    vertical-align: top;
-    text-align: center;
-}
-.frame02 #info_form .myInfoBox td{
-    padding: 10px 0;
-    border-top: 0;
-    font-size: 14px;
-    vertical-align: top;
-    text-align: center;
-}
-.frame02 .footer{
-	padding-top: 40px;
-	text-align: center;
-}
-.frame02 .btn_main{
-    border: 0;
-    border-radius: 3px;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 40px;
-    text-align: center;
-    display: inline-block;
-    width: 300px;
-    margin-right: 20px;
-    border: 1px solid #cd595a;
-    background-color: #cd595a;
-    color: #fff;
-}
-.frame02 #update{
-	border: 0;
-    border-radius: 3px;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 40px;
-    text-align: center;
-    display: inline-block;
-    width: 300px;
-    margin-left: 20px;
-    border: 1px solid #cd595a;
-    background-color: #cd595a;
-    color: #fff;
-}
-
-</style>
 </head>
 <body>
 <h3 align="center">나의 정보</h3>

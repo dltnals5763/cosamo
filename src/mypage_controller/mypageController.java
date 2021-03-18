@@ -16,7 +16,7 @@ import project.vo_mypage.UserInfo2;
 /**
  * Servlet implementation class mypageController
  */
-@WebServlet(name = "mypage", urlPatterns = { "/mypage" })
+@WebServlet(name = "mypage.do", urlPatterns = { "/mypage.do" })
 public class mypageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,11 +29,12 @@ public class mypageController extends HttpServlet {
     }
 
 	/**
-	 * http://localhost:7080/jspexp/mypage
+	 * http://localhost:7080/cosa/mypage.do
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		String id = request.getParameter("id");
 		String isUpdate = request.getParameter("isUpdate");
 		boolean result=false;
@@ -56,7 +57,7 @@ public class mypageController extends HttpServlet {
 			request.setAttribute("userInfo", dao.userInfo(id));
 		}
 		
-		String page = "inflearn\\proView\\myInfo.jsp";
+		String page = "mypage\\myInfo.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);
 	}

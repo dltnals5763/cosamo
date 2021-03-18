@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="java.util.*" 
-    import="jspexp.z01_vo.BoardExp"
-    %>
+    import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -13,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type ="text/css" rel="stylesheet" href="${path}/inflearn/proView/cssfile.css">
+<link type ="text/css" rel="stylesheet" href="${path}/mypage/cssfile.css">
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
@@ -21,7 +19,6 @@
 <script src="${path}/a00_com/jquery-ui.js"></script>
 </head>
 <body>
-
 <h3 align="center">내가 쓴 댓글</h3>
 	<div class="wFrame1">
 		<table class="text-List">
