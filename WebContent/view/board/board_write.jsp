@@ -114,13 +114,13 @@ textarea {
 					<td width="110px">카테고리</td>
 					<td>
 					<select name="category" required id="category">
-						<option value="사담">사담</option>
-						<option value="Java">Java</option>
-						<option value="Python">Python</option>
-						<option value="Javascript">Javascript</option>	
-						<option value="html">html</option>
-						<option value="C/C++">C/C++</option>
-						<option value="Spring">Spring</option>
+						<option value="category">사담</option>
+						<option value="category">Java</option>
+						<option value="category">Python</option>
+						<option value="category">Javascript</option>	
+						<option value="category">html</option>
+						<option value="category">C/C++</option>
+						<option value="category">Spring</option>
 					</select>
 					</td>
 				</tr>

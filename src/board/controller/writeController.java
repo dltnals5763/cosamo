@@ -2,7 +2,7 @@ package board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Enumeration; 
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -49,7 +50,7 @@ public class writeController extends HttpServlet {
 		ServletContext context = getServletContext();
 		realFolder = context.getRealPath(saveFolder);
 		System.out.println("the realpath is : " + realFolder + "<br>");
-
+		HttpSession session = request.getSession();
 		try
 		{
 			MultipartRequest multi = null;
@@ -88,7 +89,10 @@ public class writeController extends HttpServlet {
 					System.out.println("<br>");
 				}				
 				
-				
+				String id = null;
+				if(id!=null) {
+					id=(String) request.getAttribute("id");
+				}
 				String category = multi.getParameter("category");
 				String title = multi.getParameter("title"); 
 				String content = multi.getParameter("content");
@@ -98,6 +102,7 @@ public class writeController extends HttpServlet {
 				if(title==null) title="";
 				if(content==null) content="";
 				if(file1==null) file1="";
+				log("#id:"+id);
 				log("#category:"+category);
 				log("#title:"+title);
 				log("#content:"+content);

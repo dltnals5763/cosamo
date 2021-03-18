@@ -17,6 +17,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
+<script type="text/javascript"
+	src="${path}/a00_com/jquery-3.5.1.js"></script>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/bootstrap.min.js"></script>
@@ -28,7 +30,11 @@
 --%>
 //
    $(document).ready(function(){
-      
+      $(".data").on("click",function(){
+    	  var num = $(this).children().eq(0).text();
+    	  location.href="${path}/boardDetail.do?num="+num;
+      })
+      var category = document.getElementById("");
    });
 </script>
 </head>
@@ -50,11 +56,11 @@
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${dlist }">
-						<tr>
+						<tr class="data">
 							<td>${dto.num }</td>	
 							<td>${dto.category }</td>
 							<td>${dto.title }</td>
-							<td>${dto.writer }</td>
+							<td>${dto.id }</td>
 							<td>${dto.reg_date }</td>
 							<td>${dto.readcount }</td>
 						</tr>

@@ -60,9 +60,9 @@ public class BoardDao {
 			setCon();
 			con.setAutoCommit(false);
 			stmt = con.createStatement();
-			String sql=" INSERT INTO board(num,writer,title,category,readcount,favor,content)\r\n"
+			String sql=" INSERT INTO board(num,id,title,category,readcount,favor,content)\r\n"
 					+ "values((SELECT nvl(max(num)+1,1) FROM board),\r\n"
-					+ "'회원','"+ins.getTitle()+"','"+ins.getCategory()+"',0,0,\r\n"
+					+ "'"+ins.getId()+"','"+ins.getTitle()+"','"+ins.getCategory()+"',0,0,\r\n"
 					+ "'"+ins.getContent()+"') ";
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
@@ -119,7 +119,7 @@ public class BoardDao {
 	
 	
 	// 조회수 증가
-	public void updateCount(BoardDTO upc) {
+	public void updateCount(int num) {
 		try {
 			setCon();
 			String sql = " UPDATE BOARD \r\n"
@@ -127,7 +127,7 @@ public class BoardDao {
 					+ "	WHERE num=? ";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, upc.getNum());
+			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 			con.commit();
 			pstmt.close();
@@ -150,15 +150,63 @@ public class BoardDao {
 	} 	
 	
 	// 좋아요 수 증가
-	public void updateFavor(BoardDTO upf) {
+	public void favor(String id, String num) {
 		try {
 			setCon();
-			String sql = " UPDATE BOARD \r\n"
-					+ "	SET favor = favor+1\r\n"
+			con.setAutoCommit(false);
+			String sql=" INSERT INTO favor VALUES(?,?) ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, num);
+			System.out.println(sql);
+			pstmt.executeUpdate(sql);
+			con.commit();
+			pstmt.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("#### db에러");
+			try {
+				con.rollback();
+			}catch(SQLException e1) {
+				e1.printStackTrace();
+			}
+		}catch(Exception e) {
+			System.out.println("#### 일반에러");
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	//글 상세
+	public BoardDTO getWrite(int num) {
+		BoardDTO board = null;
+		try {
+			setCon();
+			String sql = " SELECT * FROM board WHERE num = '"+num+"'";
+			System.out.println(sql);
+			stmt=con.createStatement();
+			rs=stmt.executeQuery(sql);
+			if(rs.next()) {
+				board = new BoardDTO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),
+						rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getString(8));
+			}
+			rs.close();
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return board;
+	}
+	// 글 삭제
+	public int delete(String num) {
+		try {
+			setCon();
+			String sql = " DELETE FROM BOARD \r\n"
 					+ "	WHERE num=? ";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, upf.getFavor());
+			pstmt.setInt(1, Integer.parseInt(num));
 			pstmt.executeUpdate();
 			con.commit();
 			pstmt.close();
@@ -178,38 +226,33 @@ public class BoardDao {
 			System.out.println("#### 일반 에러");
 			System.out.println(e.getMessage());
 		}
+		return -1;
 	} 
-	
-	//글 상세
-	public BoardDTO getWrite(int num) {
-		BoardDTO board = null;
+
+	// 회원 아이디 가져오기
+	public String getId(String num){
 		try {
 			setCon();
-			String sql = " SELECT * FROM board WHERE num="+num;
-			System.out.println(sql);
-			stmt=con.createStatement();
-			rs=stmt.executeQuery(sql);
-			if(rs.next()) {
-				board = new BoardDTO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),
-						rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getString(8));
+			String sql = "select id from board where num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(num));
+			rs=pstmt.executeQuery(sql);
+			while(rs.next()) {
+				return rs.getString(1);
 			}
 			rs.close();
 			stmt.close();
 			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e) {
 			e.printStackTrace();
+			System.out.println("#### DB관련에러");
+			System.out.println(e.getMessage());
+		}catch(Exception e) {
+			System.out.println("#### 일반에러");
+			System.out.println(e.getMessage());
 		}
-		return board;
+		return null;
 	}
-	// 글 삭제
-	public static void main(String[] args) {
-		BoardDao bd = new BoardDao();
-		/*String writer, String title, String content*/
-		BoardDTO ins = new BoardDTO("카테고리","제목","내용");
-		bd.insertWrite(ins);
-	}
-	
 	}
 
 

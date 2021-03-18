@@ -5,7 +5,7 @@ import java.util.Date;
 public class BoardDTO {
 /*
 	num number PRIMARY KEY, --게시물번호
-	writer varchar2(50) NOT NULL, --작성자
+	id varchar2(50) NOT NULL, --작성자
 	title varchar2(50) NOT NULL, --제목
 	reg_date DATE default sysdate, --작성일자
 	readcount number, --조회수
@@ -15,13 +15,20 @@ public class BoardDTO {
 	filesize number
 */	
 	private int num;
-	private String writer;
+	private String id;
 	private String title;
 	private String category;
 	private Date reg_date;
 	private int readcount;
 	private int favor;
 	private String content;
+	private String filesize;
+	public String getFilesize() {
+		return filesize;
+	}
+	public void setFilesize(String filesize) {
+		this.filesize = filesize;
+	}
 	public BoardDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,10 +39,10 @@ public class BoardDTO {
 		this.category = category;
 		this.content = content;
 	}
-	public BoardDTO(int num, String writer, String title, String category, Date reg_date, int readcount, int favor, String content) {
+	public BoardDTO(int num, String id, String title, String category, Date reg_date, int readcount, int favor, String content) {
 		super();
 		this.num = num;
-		this.writer = writer;
+		this.id = id;
 		this.title = title;
 		this.reg_date = reg_date;
 		this.readcount = readcount;
@@ -61,11 +68,11 @@ public class BoardDTO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getWriter() {
-		return writer;
+	public String getId() {
+		return id;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getTitle() {
 		return title;
@@ -100,7 +107,7 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "BoardDto [num="+num+", writer="+writer+", title="+title+", reg_date="+reg_date+
+		return "BoardDto [num="+num+", id="+id+", title="+title+", reg_date="+reg_date+
 				", readcount="+readcount+", favor="+favor+", content="+content;
 	}
 	
