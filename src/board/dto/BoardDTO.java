@@ -107,7 +107,7 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "BoardDto [num="+num+", id="+id+", title="+title+", reg_date="+reg_date+
+		return "BoardDto [num="+num+", id="+id+", title="+title+", category="+category+", reg_date="+reg_date+
 				", readcount="+readcount+", favor="+favor+", content="+content;
 	}
 	

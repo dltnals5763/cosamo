@@ -72,6 +72,7 @@ public class DAO_login {
 		
 		public Member login(Member login) {
 			Member m = null;
+			if(m.getId()==null) m.setId("");
 			try {
 				setCon();
 				String sql = "SELECT * FROM MEMBER \n"

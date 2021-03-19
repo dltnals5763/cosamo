@@ -166,11 +166,11 @@
 #post-all-tab td{
 	padding:10px 10px 10px 20px;
 }
-#post-all-tab td:nth-child(2){
+#post-all-tab td:nth-child(3){
 	padding:10px 10px 10px 30px;
-	width:300px;
+	width:250px;
 }
-#post-all-tab td:nth-child(2):hover{
+#post-all-tab td:nth-child(3):hover{
 	text-decoration:underline;
 }
 #login{

@@ -119,7 +119,39 @@
 				<c:if test="${member!=null }"><div id="logout" onclick="logout()">로그아웃</div></c:if>
 				<c:if test="${member==null }"><div id="login" onclick="location.href='${path}/mainLeft.do'">로그인</div></c:if>
 				<div id="list">
-				 	<jsp:include page="announcetest.jsp" flush="false"/>
+						<div id="announce">
+							<div id="announce-text">
+								공지사항 
+							</div>
+							<!-- post-all-text -->
+							<table id="post-all-tab">
+								
+								<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>좋아요</th></tr>
+								<tr><td>5</td><td>[필독] 코사모 커뮤니티 규정</td><td>ADMIN</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>4</td><td>[필독] 회원 등급별 규정</td><td>ADMIN</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>3</td><td>[공지]	 통합공지 </td><td>ADMIN</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>2</td><td>이벤트 공지 </td><td>ADMIN</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>1</td><td>개정 규정 공지 </td><td>ADMIN</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+							</table>
+						</div>
+						<!-- announce -->
+						<div id="post-all">
+							<div id="post-all-text">
+								전체글 
+							</div>
+							<!-- post-all-text -->
+							<table id="post-all-tab">
+								
+								<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>좋아요</th></tr>
+								<tr><td>10</td><td>404에러 났는데 함 봐주세요.. </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>10</td><td>500에러 ...</td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>10</td><td>자바공부 어떻게 하시나요</td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>10</td><td>스터디 구합니다 </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>10</td><td>에러좀 봐주실분 </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+								<tr><td>10</td><td>취업스터디 모집합니다 </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+							</table>
+						</div>
+						<!-- post-all -->
 						
 				</div>
 				<!-- list -->
