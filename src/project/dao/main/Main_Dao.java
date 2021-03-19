@@ -57,5 +57,34 @@ public class Main_Dao {
 		}
 		return blist;
 	}
-
+	
+	public ArrayList<BoardDTO> AnnouceList(){
+		ArrayList<BoardDTO> blist =new ArrayList<BoardDTO>();
+		try {
+			setCon();
+			String sql = "SELECT * FROM board WHERE category = '공지' ORDER BY reg_date DESC";
+			System.out.println("sql:"+sql);
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				System.out.println("데이터가 있는지?");
+				// int num, String id, String title, String category, Date reg_date, int readcount, int favor, String content
+				BoardDTO board = new BoardDTO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getString(8));
+				blist.add(board);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+//			5. 예외 처리..								
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("##DB 관련 에러##");
+			System.out.println(e.getMessage());
+		} catch(Exception e) {
+			System.out.println("##기타 에러##");
+			System.out.println(e.getMessage());
+		}
+		return blist;
+	}
 }

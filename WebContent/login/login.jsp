@@ -124,7 +124,7 @@ body
 %>
 <body>
  <div id="banner">
-	<img id="banner" src="${path }/image/image-main/cosamo.jpg" onclick="location.href='${path}/main.jsp'">
+	<img id="banner" src="${path }/image/image-main/cosamo.jpg" onclick="location.href='${path}/main_include.jsp'">
 </div>
    <div id = "align">
    <div id ="loginbox">
@@ -169,13 +169,13 @@ body
    
    
    function signUp(){
-      location.href="signUp.jsp";
+      location.href="${path}/login/signUp.jsp";
    }
    function searchId(){
-      location.href="searchId.jsp";
+      location.href="${path}/login/searchId.jsp";
    }
    function searchPass(){
-      location.href="searchPass.jsp";
+      location.href="${path}/login/searchPass.jsp";
    }
 </script>
 </html>

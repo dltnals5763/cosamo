@@ -45,7 +45,9 @@ public class MainLeftController extends HttpServlet {
 		MainLeft_Dao dao = new MainLeft_Dao();
 		Main_Dao dao2 = new Main_Dao(); // 전체글 가져오기 DAO 
 		ArrayList<BoardDTO> blist = dao2.boardAllList();
-		request.setAttribute("blist", blist); 
+		ArrayList<BoardDTO> alist = dao2.AnnouceList();
+		session.setAttribute("blist", blist);  // 전체글 리스트 
+		session.setAttribute("alist", alist);  // 공지사항 리스트 
 		
 		
 		// 2. 모델 데이터 처리
@@ -61,7 +63,7 @@ public class MainLeftController extends HttpServlet {
 				// DB 연동의 경우, session값을 설정해서 model데이터를 매핑한다.
 				session.setAttribute("member", dao.login(mem));
 				session.setAttribute("grade", dao.getGrade(mem));
-				page="main.jsp";
+				page="main_include.jsp";
 			}else {
 			//	request.setAttribute("isSuccess", false);
 			}

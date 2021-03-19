@@ -16,8 +16,9 @@
 }
 #left{
 	display:block;
-	float:left;
-	width:200px;
+	float:left; 
+	/* width:200px; */
+	width:20%;
  	background:#F8f8ff; 
 }
 #info-title{
@@ -123,13 +124,17 @@
 	text-decoration:underline;
 }
 #mid{
-	width:800px;
+	/* width:800px; */
 	float:right;
 	/* background:orange; */
 	display:block;
 }
 #list{
-	padding:20px;
+	position:absolute;
+	display:inline-block;
+	clear:right;
+	padding:20px 20px 0px 80px;
+	
 }
 #post-all-text{
 	width:43px;
@@ -156,7 +161,9 @@
 	text-decoration:underline;
 }
 #post-all-tab{
-	width:750px;
+	/* width:750px; */
+/* 	background:green; */
+	width:110%;
 	border: 1px solid #F5F5F5;
 }
 #post-all-tab th{
@@ -168,7 +175,8 @@
 }
 #post-all-tab td:nth-child(3){
 	padding:10px 10px 10px 30px;
-	width:250px;
+	/* width:250px; */
+	width:30%;
 }
 #post-all-tab td:nth-child(3):hover{
 	text-decoration:underline;

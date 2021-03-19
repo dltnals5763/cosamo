@@ -27,38 +27,51 @@
 //
 </script>
 <body>
+<jsp:include page="main.jsp" flush="false"/>
+<div id="list">
 <div id="announce">
 		<div id="announce-text">
 			공지사항 
 		</div>
-		<!-- post-all-text -->
+		<%-- post-all-text --%>
 		<table id="post-all-tab">
 			<tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>좋아요</th></tr>
-			<c:forEach var="b" items="${blist }">
-			<tr><td>${b.num }</td><td>${b.category }</td><td>${b.title }</td><td>${b.id }</td><td>${b.reg_date }</td><td>${b.readcount }</td><td>${b.favor }</td></tr>
+			<c:forEach var="a" items="${alist }" varStatus="sts">
+			<tr><td id="acnt${sts.index }"></td><td>${a.category }</td><td>${a.title }</td><td>${a.id }</td><td>${a.reg_date }</td><td>${a.readcount }</td><td>${a.favor }</td></tr>
 			</c:forEach>
 		</table>
 	</div>
-	<!-- announce -->
+	<%--  announce --%>
 	<div id="post-all">
 		<div id="post-all-text">
 			전체글 
 		</div>
-		<!-- post-all-text -->
+		<%--  post-all-text --%>
 		<table id="post-all-tab">
-			
 			<tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>좋아요</th></tr>
-			<tr><td>10</td><td>공지</td><td>404에러 났는데 함 봐주세요.. </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
-			<tr><td>10</td><td>JAVA</td><td>500에러 ...</td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
-			<tr><td>10</td><td>자유게시판</td><td>자바공부 어떻게 하시나요</td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
-			<tr><td>10</td><td>HTML</td><td>스터디 구합니다 </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
-			<tr><td>10</td><td>js</td><td>에러좀 봐주실분 </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
-			<tr><td>10</td><td>공지</td><td>취업스터디 모집합니다 </td><td>HONG</td><td>2020-03-03</td><td>20</td><td>5</td></tr>
+			<c:forEach var="b" items="${blist }" varStatus="sts">
+			<c:if test="${sts.index<=10 }">
+			<tr><td id="bcnt${sts.index }"></td><td>${b.category }</td><td>${b.title }</td><td>${b.id }</td><td>${b.reg_date }</td><td>${b.readcount }</td><td>${b.favor }</td></tr>
+			</c:if>
+			</c:forEach>
 		</table>
 	</div>
-	<!-- post-all -->
+	<%--  post-all --%>
+	</div>
+	<%--  list --%>
 </body>
 <script>
+	var acnt = ${alist.size()};
+	var idxcnt1 = acnt;
+	for(var idx=0;idx < acnt;idx++){
+		document.getElementById("acnt"+idx).innerHTML = idxcnt1--;
+	}
+	
+	var bcnt = ${blist.size()};
+	var idxcnt2 = bcnt;
+	for(var idx=0;idx < bcnt;idx++){
+		document.getElementById("bcnt"+idx).innerHTML = idxcnt2--;
+	}
 </script>
 </html>
 

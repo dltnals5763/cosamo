@@ -75,7 +75,7 @@ font-size:14px;
 </head>
 <body>
 <div id="banner">
-	<img id="banner" src="../image/image-main/cosamo.jpg" onclick="location.href='../main.jsp'">
+	<img id="banner" src="../image/image-main/cosamo.jpg" onclick="location.href='../main_include.jsp'">
 </div>
 <div id="align">
 

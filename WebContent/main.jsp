@@ -20,11 +20,6 @@
 <script type="text/javascript" 
   src="${path}/a00_com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
-<%--
- 
- 
---%>
-//
 </script>
 </head>
 <%
@@ -32,15 +27,14 @@
 	if(logout!=null&&logout.equals("y")){
 		session.setAttribute("member",null);
 		session.setAttribute("grade",null);
-		// response.sendRedirect("login/login.jsp");
 	}
 %>
 <body>
 	<div id="container">
 		<div id="banner">
-			<img id="banner" src="image/image-main/cosamo.jpg" onclick="location.href='${path}/main.jsp'">
+			<img id="banner" src="image/image-main/cosamo.jpg" onclick="location.href='${path}/main_include.jsp'">
 		</div>
-		<!-- banner -->
+		<%--  banner --%>
 		<div id="main">
 			<div id="left">
 				<div id="info">
@@ -48,7 +42,7 @@
 						나의 활동
 					</div>
 					<hr id="hr1">
-					<!-- info-title -->
+					<%--  info-title --%>
 					<div id="info-data1">
 						<ul>
 							<c:if test="${member!=null}"><li><span id="span-id">${member.id }</span>님</li></c:if>
@@ -58,14 +52,14 @@
 							<li>댓글 수<span id="span-comment">${member.commentcnt }</span></li>
 						</ul>
 					</div>
-					<!-- info-data1 -->
+					<%--  info-data1 --%>
 					<c:if test="${member==null }">
 					<div id="join-box">
 						<div id="join-text" onclick="location.href='login/signUp.jsp'">카페 가입하기</div>
 					</div>
 					</c:if>
 					<c:if test="${member!=null}"><hr></c:if>
-					<!-- join-box -->
+					<%--  join-box --%>
 					<div id="board-intro">
 						<ul>
 							<li>전체글보기</li>
@@ -73,7 +67,7 @@
 						</ul>
 						<hr id="hr2">
 					</div>
-					<!-- board-info -->
+					<%--  board-info --%>
 					<div id="board-list">
 						<ul>
 							<li>공지사항</li>
@@ -86,7 +80,7 @@
 						</ul>
 						<hr>
 					</div>
-					<!-- board-list -->
+					<%-- board-list --%>
 					<div id="latest-comment">
 						<div id="latest-comment-title">최근댓글</div>
 						<ul>
@@ -95,7 +89,7 @@
 							<li>영화 저 산 너머..</li>
 						</ul>
 					</div>
-					<!-- latest-comment -->
+					<%--  latest-comment --%>
 					<div id="admin-info">
 						<div id="admin-info-title">사업자정보</div>
 						<div id="admin-info-data1">
@@ -108,36 +102,27 @@
 							<li>이용약관  <span id="terms">이용약관보기</span></li>
 						</ul>
 						</div>
-						<!-- admin-info-data1 -->
+						<%--  admin-info-data1 --%>
 					</div>
-					<!-- admin-info -->
+					<%--  admin-info --%>
 				</div>
-				<!-- info -->
+				<%--  info --%>
 			</div>
-			<!-- left -->
+			<%--  left --%>
 			<div id="mid">
 				<c:if test="${member!=null }"><div id="logout" onclick="logout()">로그아웃</div></c:if>
 				<c:if test="${member==null }"><div id="login" onclick="location.href='${path}/mainLeft.do'">로그인</div></c:if>
-				<div id="list">
-				 	<jsp:include page="announcetest.jsp" flush="false"/>
-						
-				</div>
-				<!-- list -->
 			</div>
-			<!-- mid -->
+			<%--  mid --%>
 		</div>
-		<!-- main -->
-		<div id ="footer">
-			
-		</div>
-		<!-- footer -->
+		<%--  main --%>
 	</div>
-	<!-- container -->
+	<%--  container --%>
 </body>
 <script>
 	function logout(){
 		alert("로그아웃되었습니다.");
-		location.href="main.jsp?logout=y";
+		location.href="main_include.jsp?logout=y";
 	}
 </script>
 </html>
