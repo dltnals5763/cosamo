@@ -28,7 +28,7 @@
 </script>
 <body>
 <jsp:include page="main.jsp" flush="false"/>
-<div id="list">
+<div id="mainlist">
 <div id="announce">
 		<div id="announce-text">
 			공지사항 
@@ -58,7 +58,7 @@
 	</div>
 	<%--  post-all --%>
 	</div>
-	<%--  list --%>
+	<%--  mainlist --%>
 </body>
 <script>
 	var acnt = ${alist.size()};
