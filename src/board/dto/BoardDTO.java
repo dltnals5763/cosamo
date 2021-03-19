@@ -44,6 +44,7 @@ public class BoardDTO {
 		this.num = num;
 		this.id = id;
 		this.title = title;
+		this.category = category;
 		this.reg_date = reg_date;
 		this.readcount = readcount;
 		this.favor = favor;

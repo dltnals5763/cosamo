@@ -44,7 +44,7 @@ public class MainLeftController extends HttpServlet {
 		String pass = request.getParameter("pass");
 		MainLeft_Dao dao = new MainLeft_Dao();
 		Main_Dao dao2 = new Main_Dao(); // 전체글 가져오기 DAO 
-		ArrayList<BoardDTO> blist = dao2.boardList();
+		ArrayList<BoardDTO> blist = dao2.boardAllList();
 		request.setAttribute("blist", blist); 
 		
 		

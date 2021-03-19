@@ -28,7 +28,7 @@ public class Main_Dao {
 		System.out.println("접속 성공!!!");
 	}
 	
-	public ArrayList<BoardDTO> boardList(){
+	public ArrayList<BoardDTO> boardAllList(){
 		ArrayList<BoardDTO> blist =new ArrayList<BoardDTO>();
 		try {
 			setCon();
