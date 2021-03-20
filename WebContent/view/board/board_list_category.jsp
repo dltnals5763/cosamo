@@ -17,47 +17,51 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/bootstrap.min.js"></script>
 <script src="${path}/a00_com/jquery-ui.js"></script>
+<style>
+
+#wrap_category {  float:left; padding:10px;} 
+.category { margin-bottom:10px; }
+.uppercase { text-transform:uppercase!important; }
+
+</style>
 <script type="text/javascript">
+
 <%--
  
  
 --%>
-
-   $(document).ready(function(){
+$(document).ready(function(){
+	 var xhr = new XMLHttpRequest();	
+	 ajaxFun();	
 		$(".category").change(function(){
-			var catText = $("option:selected").text();				
-				$("#catSelect").val(catText);
 				ajaxFun();			
 		});
-		
-	 var xhr = new XMLHttpRequest();
+
 	 function ajaxFun(){
-	    var catVal = $("[name=category]").val();
-	
+	    var catVal = $("[name=category]").val();	
 	    var qstr = "category="+catVal;
-	    if(catVal=="전체") catVal = "";
+
 	    xhr.open("post","list_data.jsp?",true);
 	    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
 	    xhr.onreadystatechange = function(){
 	       if(xhr.readyState == 4 && xhr.status==200){
-	          // z09_empList.jsp에서 전송해오는 결과 html 내용을
-	          // 현재 화면의 div에 출력 처리한다.
 	      	 $(".list").html(xhr.responseText);
 	      	 var listData = JSON.parse(xhr.responseText);
-	         var show = "<h4>"+listData.tot+"</h2>";
-				show+="<table class='table table-striped'><tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>"
+	       //  var show = "<h4>"+listData.tot+"</h4>";\
+	       		var show = "";
+				show+="<table id='post-all-tab' class='table table-striped'><tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>"
 	      		 $(listData.categoryList).each(function(idx, listData){
 	      			show+="<tr>";
-	      			show+="<td>"+listData.num+"</td>";
-	      			show+="<td>"+listData.category+"</td>";
+	      			show+="<td>"+(idx+1)+"</td>";
+	      			show+="<td class='uppercase'>"+listData.category+"</td>";
 	      			show+="<td>"+listData.title+"</td>";
-	      			show+="<td>"+listData.writer+"</td>";
-	      			show+="<td>"+listData.reg_date+"</td>";
+	      			show+="<td>"+listData.id+"</td>";
+	      			show+="<td>"+listData.re
+	      			date+"</td>";
 	      			show+="<td>"+listData.readcount+"</td>";
 	      			show+="</tr>";
 	      		});
@@ -72,44 +76,24 @@
 </head>
 
 <body>
+<jsp:include page="/main.jsp" />
+
 	<!-- 게시판 메인 페이지 영역 시작 -->
-	<div class="container">
+	<div id="wrap_category">
 		<div class="row">
 			<div class="category">
 			<select name="category" id="catSelect">
-				<option>전체</option>
-				<option>JAVA</option>
-				<option>HTML/CSS</option>
-				<option>JavaScript</option>
-				<option>JQUERY</option>
+				<option value="">전체</option>
+				<option value="notice">공지사항</option>
+				<option value="free">자유게시판</option>
+				<option value="JAVA">JAVA</option>
+				<option value="HTML/CSS">HTML/CSS</option>
+				<option value="JavaScript">JavaScript</option>
+				<option value="JQUERY">JQUERY</option>
 			</select>
 			</div>
 			<div class="list">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
-					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">번호</th>
-						<th style="background-color: #eeeeee; text-align: center;">카테고리</th>
-						<th style="background-color: #eeeeee; text-align: center;">제목</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
-						<th style="background-color: #eeeeee; text-align: center;">조회수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="dto" items="${dlist }">
-						<tr>
-							<td>${dto.num }</td>	
-							<td>${dto.category }</td>
-							<td>${dto.title }</td>
-							<td>${dto.writer }</td>
-							<td>${dto.reg_date }</td>
-							<td>${dto.readcount }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
+		
 			</div>
 			
 			<!-- 글쓰기 버튼 생성 -->

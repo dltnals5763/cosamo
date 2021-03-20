@@ -39,10 +39,17 @@ public class boardListController extends HttpServlet {
 		// 1. 요청값 받기
 		BoardDao dao = new BoardDao();
 		ArrayList<BoardDTO> list = dao.boardList();
-		request.setAttribute("dlist", list);
+				
+
 		// 2. 모델 데이터
+		request.setAttribute("dlist", list);
+		
+		String categVal =  request.getParameter("category");
+		if(categVal=="전체") categVal = "";
 		
 		// 3. 뷰단에 넘기기
+		
+		
 		String page="view\\board\\board_list.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);

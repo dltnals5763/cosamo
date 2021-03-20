@@ -133,7 +133,7 @@
 	position:absolute;
 	display:inline-block;
 	clear:right;
-	padding:20px 20px 0px 80px;
+	padding:20px 0px 0px 80px;
 	
 }
 #post-all-text{
@@ -163,7 +163,7 @@
 #post-all-tab{
 	/* width:750px; */
 /* 	background:green; */
-	width:110%;
+	width:100%;
 	border: 1px solid #F5F5F5;
 }
 #post-all-tab th{

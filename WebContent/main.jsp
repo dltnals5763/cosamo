@@ -32,7 +32,7 @@
 <body>
 	<div id="container">
 		<div id="banner">
-			<img id="banner" src="image/image-main/cosamo.jpg" onclick="location.href='${path}/main_include.jsp'">
+			<img id="banner" src="${path}/image/image-main/cosamo.jpg" onclick="location.href='${path}/main_include.jsp'">
 		</div>
 		<%--  banner --%>
 		<div id="main">

@@ -43,7 +43,6 @@ public class ListDao {
 		
 			rs = pstmt.executeQuery();		
 			while(rs.next()) {
-			
 				BoardDTO e = new BoardDTO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),
 						rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getString(8));
 		               //  2. ArrayList에 할당.
@@ -65,5 +64,10 @@ public class ListDao {
 			System.out.println("기타 에러: " + e.getMessage());
 		}
 		return list;
+	}
+	public static void main(String[] args) {
+		ListDao dao = new ListDao();
+		
+		dao.categoryList("");
 	}
 }

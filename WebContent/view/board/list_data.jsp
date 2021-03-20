@@ -11,7 +11,7 @@
  <c:set var="categoryList" value="${dao.categoryList(param.category)}"></c:set>
  {"tot":${categoryList.size()},"categoryList":[
  	<c:forEach var="dto" items="${categoryList}" varStatus="sts">
- 		{"num":${dto.num},"category":"${dto.category}","title":"${dto.title}","writer":"${dto.writer}", "reg_date":"${dto.reg_date }","readcount":${dto.readcount}}
+ 		{"num":${dto.num},"category":"${dto.category}","title":"${dto.title}","id":"${dto.id}", "reg_date":"${dto.reg_date }","readcount":${dto.readcount}}
  		<c:if test="${!sts.last}">,</c:if>
  	</c:forEach>
  ]}
