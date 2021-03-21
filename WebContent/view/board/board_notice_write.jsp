@@ -45,13 +45,8 @@
 	var idS = "<%=(String)session.getAttribute("id")%>";
 	if(idS==null){
 		alert("비회원은 글 작성을 할 수 없습니다.");
-		location.href="${path}/mainLeft.do";
+		location.href="mainLeft.do";
 	}
-	
-    $("#sub").on("click",function(){
-    	alert("등록완료");
-    	location.href="${path}/boardList.do";
-    });
 </script>
 <style>
 * {
@@ -123,18 +118,7 @@ textarea {
 			<table>
 				<tr>
 					<td width="110px">카테고리</td>
-					<td>
-					<select name="category" required id="category">
-						<option value="사담">사담</option>
-						<option value="Java">Java</option>
-						<option value="Python">Python</option>
-						<option value="Javascript">Javascript</option>	
-						<option value="html">html</option>
-						<option value="C/C++">C/C++</option>
-						<option value="Spring">Spring</option>
-					</select>
-						
-					</td>
+					<td>공지사항</td>
 				</tr>
 				<tr>
 					<td>제목</td>
@@ -146,18 +130,14 @@ textarea {
 					</td>	
 				</tr>
 				<tr>
-					<td align="center"><input id="sub" type="submit" value="작성" class="button"></td>
+					<td align="center"><input type="submit" value="작성" class="button"
+						></td>
 				</tr>
 			</table>
 		</form>
 		<div>
-			<a href="boardList.do">
-				<button>게시판</button>
-			</a>
-		</div>
-		<div>
-			<a href="mainLeft.do">
-				<button>홈으로</button>
+			<a href="main.do">
+				<button>메인화면</button>
 			</a>
 		</div>
 	
@@ -171,7 +151,3 @@ textarea {
 	</script>
 </body>
 </html>
-
-
-
-

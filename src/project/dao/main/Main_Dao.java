@@ -62,7 +62,7 @@ public class Main_Dao {
 		ArrayList<BoardDTO> blist =new ArrayList<BoardDTO>();
 		try {
 			setCon();
-			String sql = "SELECT * FROM board WHERE category = '공지' ORDER BY reg_date DESC";
+			String sql = "SELECT * FROM notice ORDER BY reg_date DESC";
 			System.out.println("sql:"+sql);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();

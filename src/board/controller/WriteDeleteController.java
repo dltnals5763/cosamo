@@ -1,7 +1,7 @@
 package board.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import board.dao.BoardDao;
+import board.dto.BoardDTO;
 
 /**
  * Servlet implementation class WriteDeleteController
@@ -35,42 +36,18 @@ public class WriteDeleteController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8"); 
 		response.setContentType("text/html; charset=UTF-8");		
-		HttpSession session = request.getSession();
-		String id=(String) request.getAttribute("id");
-		String num = null;
-		if(request.getParameter("num")!=null) {
-			num = request.getParameter("num");
-		}
 		BoardDao dao = new BoardDao();
-		if(id!=null) {
-			int result = new BoardDao().delete(num);
-			if(id.equals(dao.getId(num))&&result==1) {
-				response.setCharacterEncoding("UTF-8"); 
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('삭제 완료');");
-				script.println("location.href='boardList.do'");
-				script.println("</script>");
-			}else {
-				response.setCharacterEncoding("UTF-8"); 
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter script = response.getWriter();				
-				script.println("<script>");
-				script.println("alert('본인이 작성한 글만 삭제 가능합니다.');");
-				script.println("history.back();");
-				script.println("</script>");
-			}
-		}else if(id==null) {
-			response.setCharacterEncoding("UTF-8"); 
-			response.setContentType("text/html; charset=UTF-8");			
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인창으로 이동합니다.');");
-			script.println("location.href='login.do'");
-			script.println("</script>");			
+		HttpSession session = request.getSession();
+		String id=(String) session.getAttribute("id");
+		String num = request.getParameter("num");
+		String category = request.getParameter("category");
+		// 아이디가 아이디와 같아야 함 그래야 삭제 가능
+		if(request.getParameter("id").equals(id)) {
+			BoardDTO del = new BoardDTO(Integer.parseInt(num),category);
+			dao.delete(del);
 		}
-		
+		ArrayList<BoardDTO> list = dao.boardList(category);
+	      request.setAttribute("dlist", list);
 		String page ="view\\board\\board_list.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);

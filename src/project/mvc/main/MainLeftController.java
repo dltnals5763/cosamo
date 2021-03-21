@@ -63,6 +63,7 @@ public class MainLeftController extends HttpServlet {
 				// DB 연동의 경우, session값을 설정해서 model데이터를 매핑한다.
 				session.setAttribute("member", dao.login(mem));
 				session.setAttribute("grade", dao.getGrade(mem));
+				session.setAttribute("id", id);
 				page="main_include.jsp";
 			}else {
 			//	request.setAttribute("isSuccess", false);

@@ -6,7 +6,6 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>  
 <c:set var="path" value="${pageContext.request.contextPath}"/> 
@@ -33,11 +32,9 @@
    $(document).ready(function(){
       $(".data").on("click",function(){
     	  var num = $(this).children().eq(0).text();
-    	  var cate = $(this).children().eq(1).text();
-    	  $("[name=num]").val(num);
-    	  $("[name=category]").val(cate);
-    	  $("#com").submit();
+    	  location.href="${path}/noticeDeatil.do?num="+num;
       })
+      var category = document.getElementById("");
    });
 </script>
 </head>
@@ -58,27 +55,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="dto" items="${dlist }" varStatus="status">
-					<c:if test="${dto.category==param.category}">
+					<c:forEach var="dto" items="${nlist }">
 						<tr class="data">
-							<td>${dto.num }</td>
-							<td>${dto.category }</td>
-							<td id="title">${dto.title }</td>
+							<td>${dto.num }</td>	
+							<td>공지사항</td>
+							<td>${dto.title }</td>
 							<td>${dto.id }</td>
 							<td>${dto.reg_date }</td>
 							<td>${dto.readcount }</td>
 						</tr>
-					</c:if>	
 					</c:forEach>
 				</tbody>
 			</table>
-			<form class="form-inline" method="post" id="com" style="display:none"
-				action="${path}/boardDetail.do">
-				<input type="hidden" name="num" value=""/>
-				<input type="hidden" name="category" value=""/>
-			</form>
 			<!-- 글쓰기 버튼 생성 -->
-			<a href="write.do" class="btn btn-primary pull-right">글쓰기</a>
+			<c:if test="${id eq 'admin' }">
+			<a href="writeNotice.do" class="btn btn-primary pull-right">글쓰기</a>
+			</c:if>
 		</div>
 	</div>
 	<!-- 게시판 메인 페이지 영역 끝 -->

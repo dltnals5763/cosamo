@@ -1,6 +1,6 @@
 DROP TABLE board;
 CREATE TABLE board(
-	num number PRIMARY KEY, --게시물번호
+	num number, --게시물번호
 	id varchar2(50) NOT NULL, --작성자
 	title varchar2(50) NOT NULL, --제목
 	category varchar2(30), --카테고리
@@ -9,8 +9,56 @@ CREATE TABLE board(
 	favor NUMBER,
 	content varchar2(4000) NOT NULL
 );
+DROP SEQUENCE board1_seq;
+DROP SEQUENCE board2_seq;
+DROP SEQUENCE board3_seq;
+DROP SEQUENCE board4_seq;
+DROP SEQUENCE board5_seq;
+DROP SEQUENCE board6_seq;
+DROP SEQUENCE board7_seq;
+CREATE SEQUENCE board1_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 9999;
+CREATE SEQUENCE board2_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 9999;
+
+CREATE SEQUENCE board3_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 9999;
+
+CREATE SEQUENCE board4_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 9999;
+
+CREATE SEQUENCE board5_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 9999;
+
+CREATE SEQUENCE board6_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 9999;
+
+CREATE SEQUENCE board7_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 9999;
 
 SELECT * FROM board ORDER BY num desc;
+
 -- 글 등록
 INSERT INTO board(num,writer,title,category,readcount,favor,content)
 values((SELECT nvl(max(num)+1,1) FROM board),
@@ -21,7 +69,8 @@ UPDATE BOARD
 	SET title='제목(변경)',
 		content='내용(변경)'
 	WHERE num=1;
-SELECT * FROM board;
+SELECT * FROM board ORDER BY num desc;
+DELETE FROM board WHERE num=3 AND category='Java';
 -- 조회수 증가
 UPDATE BOARD 
 	SET readcount = readcount+1
@@ -94,3 +143,33 @@ MAXVALUE 9999;
 
 DROP TABLE com;
 DROP SEQUENCE table01_seq;
+
+
+
+--- 관리자 글쓰기
+DROP TABLE notice;
+CREATE TABLE notice(
+	num number, --게시물번호
+	id varchar2(50) NOT NULL, --작성자
+	title varchar2(50) NOT NULL, --제목
+	category varchar2(30), --카테고리
+	reg_date DATE default sysdate, --작성일자
+	readcount number, --조회수
+	favor NUMBER,
+	content varchar2(4000) NOT NULL
+);
+INSERT INTO board(num,id,title,category,readcount,favor,content)
+values((SELECT nvl(max(num)+1,1) FROM notice),
+'관리자','제목','카테고리',0,0,
+'내용');
+SELECT * FROM notice;
+
+SELECT * FROM MEMBER;
+INSERT INTO MEMBER values('admin','7777','관리자','admin123@gmail.com',0,0,0);
+UPDATE NOTICE 
+SET title = '',
+	content = ''
+WHERE num=1;	
+
+SELECT * FROM board;
+SELECT * FROM notice;

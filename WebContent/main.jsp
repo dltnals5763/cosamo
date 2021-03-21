@@ -70,13 +70,21 @@
 					<%--  board-info --%>
 					<div id="board-list">
 						<ul>
-							<li>공지사항</li>
-							<li>자유게시판</li>
-							<li>JAVA</li>
-							<li>HTML/CSS</li>
-							<li>JavaScript</li>
-							<li>JQUERY</li>
-							<li>취업뽀개기</li>
+							<li onclick="location.href='noticeList.do'">공지사항</li>
+							<li onclick="location.href='boardList.do?category=사담'">
+								자유게시판</li>
+							<li onclick="location.href='boardList.do?category=Java'">
+								Java</li>
+							<li onclick="location.href='boardList.do?category=Python'">
+								Python</li>
+							<li onclick="location.href='boardList.do?category=Javascript'">
+								JavaScript</li>
+							<li onclick="location.href='boardList.do?category=html'">
+								html</li>
+							<li onclick="location.href='boardList.do?category=C/C++'">
+								C/C++</li>
+							<li onclick="location.href='boardList.do?category=Spring'">
+								Spring</li>								
 						</ul>
 						<hr>
 					</div>

@@ -1,7 +1,6 @@
 package board.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +14,16 @@ import board.dao.BoardDao;
 import board.dto.BoardDTO;
 
 /**
- * Servlet implementation class writeController
+ * Servlet implementation class WriteNoticeController
  */
-@WebServlet(name = "write.do", urlPatterns = { "/write.do" })
-public class writeController extends HttpServlet {
+@WebServlet(name = "writeNotice.do", urlPatterns = { "/writeNotice.do" })
+public class WriteNoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public writeController() {
+    public WriteNoticeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +31,6 @@ public class writeController extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-    // get방식으로 접근했을 때 발생하는 메서드
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 1. 요청값 작성
@@ -54,22 +52,13 @@ public class writeController extends HttpServlet {
 		if(!title.equals("")) {
 			BoardDao dao = new BoardDao();
 			BoardDTO ins = new BoardDTO(id,title,category,content);
-			dao.insertWrite(ins);
+			dao.insertNotice(ins);
 		};
 		// view단 호출
 		
-		String page="view\\board\\board_write.jsp";
+		String page="view\\board\\board_notice_write.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
-		rd.forward(request, response);		
-		
+		rd.forward(request, response);	
 	}
-	
+
 }
-
-
-
-
-
-
-
-

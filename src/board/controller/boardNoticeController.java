@@ -9,22 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import board.dao.BoardDao;
 import board.dto.BoardDTO;
 
 /**
- * Servlet implementation class boardListController
+ * Servlet implementation class boardNoticeController
  */
-//http://localhost:7080/cosa/boardList.do
-@WebServlet(name = "boardList.do", urlPatterns = { "/boardList.do" })
-public class boardListController extends HttpServlet {
+@WebServlet(name = "noticeList.do", urlPatterns = { "/noticeList.do" })
+public class boardNoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public boardListController() {
+    public boardNoticeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,24 +34,19 @@ public class boardListController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
 		// 1. 요청값 받기
-		String category = request.getParameter("category");
-		if(category==null||category.equals("")) category="";
-		System.out.println("category:"+category);
 		BoardDao dao = new BoardDao();
-		ArrayList<BoardDTO> list = dao.boardList(category);
-		
+		ArrayList<BoardDTO> list = dao.noticeList();
+				
+
 		// 2. 모델 데이터
-		request.setAttribute("dlist", list);
-		String categVal =  request.getParameter("category");
-		if(categVal=="전체") categVal = "";
-		
+		request.setAttribute("nlist", list);
+		HttpSession session = request.getSession();
+		String id=(String) session.getAttribute("id"); // session id
 		// 3. 뷰단에 넘기기
 		
 		
-		String page="view\\board\\board_list.jsp";
+		String page="view\\board\\board_list_notice.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);
 	}

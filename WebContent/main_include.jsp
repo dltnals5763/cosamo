@@ -37,7 +37,7 @@
 		<table id="post-all-tab">
 			<tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>좋아요</th></tr>
 			<c:forEach var="a" items="${alist }" varStatus="sts">
-			<tr><td id="acnt${sts.index }"></td><td>${a.category }</td><td>${a.title }</td><td>${a.id }</td><td>${a.reg_date }</td><td>${a.readcount }</td><td>${a.favor }</td></tr>
+			<tr><td id="acnt${sts.index }"></td><td>공지사항</td><td>${a.title }</td><td>${a.id }</td><td>${a.reg_date }</td><td>${a.readcount }</td><td>${a.favor }</td></tr>
 			</c:forEach>
 		</table>
 	</div>
