@@ -24,15 +24,17 @@
       margin: 0 auto;
       padding-top: 12%;
     }
- 
-    .table > thead > tr > th, .table > tbody > tr > th {
+
+     .table > thead > tr > th, .table > tbody > tr > th {
       background-color: #eeeeee;
       text-align: center;
       width:20%;
-    }
+    } 
     .table > thead > tr > td, .table > tbody > tr > td {
       width:30%;
-    }
+    } 
+    .row { float:left; width:860px }
+    .table .table {border:1px solid #dee2e6;}
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <%--
@@ -68,6 +70,7 @@
 <%
    Calendar cal = Calendar.getInstance();
 %>
+<jsp:include page="/main.jsp"></jsp:include>
 <div class="row">
     <div class="col-xs-2 col-md-2"></div>
     <div class="col-xs-8 col-md-8">
@@ -76,15 +79,13 @@
     <form method="post">
     <input type="hidden" name="proc" value=""/>
         <table class="table">
-        
         <tr>
             <th class="success">카테고리(글번호)</th>
             <td>${dto.category }(${dto.num })</td>
             <th class="success">조회수</th>
             <td>${dto.readcount }</td>
         </tr>
-           
-         
+                   
         <tr>
             <th class="success">작성자</th>
             <td>${dto.id }</td>
@@ -99,9 +100,8 @@
         </tr>
          
         <tr height="250px">
-            <th class="success">글 내용</th>
-
-            <td colspan="3"><textarea rows="7" cols="90" name="content">${dto.content}
+            <th class="success" >글 내용</th>
+            <td colspan="3"><textarea rows="7" cols="30" name="content">${dto.content}
                </textarea></td>   
         </tr>
       <tr>
@@ -116,7 +116,8 @@
       </tr>
         </table>
    </form>
-   
+</div>   
+</div>  
 </div>
 </body>
 </html>

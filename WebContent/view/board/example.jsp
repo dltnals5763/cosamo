@@ -31,6 +31,9 @@
     .table > thead > tr > td, .table > tbody > tr > td {
       width:30%;
     }
+    .row { float:left; width:860px }
+    .table .table {border:1px solid #dee2e6;}
+    
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <%--
@@ -103,6 +106,7 @@
 </head>
 
 <body>
+<jsp:include page="/main.jsp"></jsp:include>
 
 <div class="row">
     <div class="col-xs-2 col-md-2"></div>

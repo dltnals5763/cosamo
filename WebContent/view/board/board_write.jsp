@@ -59,7 +59,8 @@
 }
 
 .controller {
-	padding: 25px 0;
+	float:left;
+	padding: 25px 0 25px 25px;
 	margin: auto;
 	width: 840px;
 }
@@ -68,24 +69,24 @@
 	text-align: center;
 	background-color: rgb(100, 100, 100);
 	width: 800px;
-	height: 20px;
+	height: 40px;
 	padding: 12px 0;
 	color: white;
 }
 table {
-	width: 840px;
+	width:100%;
 	margin: 25px 0;
 	padding: 20px;
 	border-collapse: collapse;
 }
-
+.controller table td { padding: 0.4em 0; }
 #category {
 	width: 100px;
 	height: 30px;
 }
 
 #title {
-	width: 700px;
+	width: 690px;
 	height: 24px;
 }
 
@@ -116,6 +117,7 @@ textarea {
 </head>
 <body>
 	<!-- 게시판 글쓰기 양식 영역 시작 -->
+	<jsp:include page="/main.jsp"></jsp:include>
 	<div class="controller">
 	<div id="wriTitle">게시글 작성</div>
 		<form method="post">
