@@ -47,6 +47,13 @@
 		alert("비회원은 글 작성을 할 수 없습니다.");
 		location.href="mainLeft.do";
 	}
+	
+	var ckInsert = "${param.content}";
+	if(ckInsert != ""){
+		if(confirm("등록완료\n조회페이지로 이동하시겠습니까?")){
+			location.href="${path}/noticeList.do";
+		}
+	}
 </script>
 <style>
 * {
@@ -136,7 +143,7 @@ textarea {
 			</table>
 		</form>
 		<div>
-			<a href="main.do">
+			<a href="${path}/mainLeft.do">
 				<button>메인화면</button>
 			</a>
 		</div>

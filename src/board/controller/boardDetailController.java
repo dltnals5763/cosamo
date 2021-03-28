@@ -38,17 +38,22 @@ public class boardDetailController extends HttpServlet {
 		String numS = request.getParameter("num");
 		if(numS==null) numS="0";
 		int num = Integer.parseInt(numS); // 게시글 번호(primary key)
+		
 		String readcountS = request.getParameter("readcount");
 		if(readcountS==null) readcountS="0";
+		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int readcount = Integer.parseInt(readcountS); // 조회수 처리
 		String proc = request.getParameter("proc"); // 수정 삭제 처리를 위함
 		String category = request.getParameter("category");
+		
 		BoardDao dao = new BoardDao();
 		HttpSession session = request.getSession();
 		String id=(String) session.getAttribute("id"); // session id
 		
+		session.setAttribute("cate", category);
+		session.setAttribute("num", new Integer(num));
 		
 		String idW =dao.getId(num);  // 글작성 id
 		System.out.println("##session id:"+id);
@@ -58,18 +63,23 @@ public class boardDetailController extends HttpServlet {
 		System.out.println("##proc:"+proc);
 		// 2. 모델 처리
 		
-		dao.updateCount(num);
-		request.setAttribute("dto", dao.getWrite(num,category));
+		//dao.updateCount(num);
+		//request.setAttribute("dto", dao.getWrite(num,category));
 		if(proc!=null) {
 			if(proc.equals("del")) {
 				BoardDTO del = new BoardDTO(num,category);
 				dao.delete(del);
+				dao.MinusPostCnt(id);
 			}
 			if(proc.equals("upt")) {
-				BoardDTO upt = new BoardDTO(num,title,content);
+				//BoardDTO upt = new BoardDTO(num,title,content);
+				BoardDTO upt = new BoardDTO(num,title,content,category);
 				dao.updateWrite(upt);
 			}
 		}
+		dao.updateCount(num);
+		request.setAttribute("dto", dao.getWrite(num,category));
+		
 		// 3. view단 처리
 		String page ="view\\board\\example.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);

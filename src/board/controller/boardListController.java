@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import board.dao.BoardDao;
 import board.dto.BoardDTO;
+import project.vo.login.Member;
 
 /**
  * Servlet implementation class boardListController
@@ -33,25 +35,35 @@ public class boardListController extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
+		
 		request.setCharacterEncoding("utf-8");
-		// 1. 요청값 받기
+		HttpSession session = request.getSession(false);
+		Member mem = null;
+		
 		String category = request.getParameter("category");
-		if(category==null||category.equals("")) category="";
-		System.out.println("category:"+category);
+		if(category == null || category.equals("")) category = "";
+		else session.setAttribute("cate", category);
+		String page= "";
+		if(session != null) {
+			mem = (Member)session.getAttribute("member");
+			
+			page = "view\\board\\board_list.jsp";
+		} else
+			page = "main_include.jsp";
+		
 		BoardDao dao = new BoardDao();
+
+		//ArrayList<BoardDTO> list = dao.boardList();
 		ArrayList<BoardDTO> list = dao.boardList(category);
 		
 		// 2. 모델 데이터
 		request.setAttribute("dlist", list);
+		// 2. 모델 데이터
 		String categVal =  request.getParameter("category");
 		if(categVal=="전체") categVal = "";
 		
 		// 3. 뷰단에 넘기기
 		
-		
-		String page="view\\board\\board_list.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);
 	}

@@ -48,10 +48,18 @@
 		location.href="${path}/mainLeft.do";
 	}
 	
+	var ckInsert = "${param.content}";
+	if(ckInsert != ""){
+		if(confirm("등록완료\n조회페이지로 이동하시겠습니까?")){
+			location.href="${path}/boardList.do?category="+'${cate}';
+		}
+	}
+	<%--
     $("#sub").on("click",function(){
     	alert("등록완료");
     	location.href="${path}/boardList.do";
     });
+    --%>
 </script>
 <style>
 * {
@@ -59,8 +67,7 @@
 }
 
 .controller {
-	float:left;
-	padding: 25px 0 25px 25px;
+	padding: 25px 0;
 	margin: auto;
 	width: 840px;
 }
@@ -69,24 +76,24 @@
 	text-align: center;
 	background-color: rgb(100, 100, 100);
 	width: 800px;
-	height: 40px;
+	height: 20px;
 	padding: 12px 0;
 	color: white;
 }
 table {
-	width:100%;
+	width: 840px;
 	margin: 25px 0;
 	padding: 20px;
 	border-collapse: collapse;
 }
-.controller table td { padding: 0.4em 0; }
+
 #category {
 	width: 100px;
 	height: 30px;
 }
 
 #title {
-	width: 690px;
+	width: 700px;
 	height: 24px;
 }
 
@@ -117,7 +124,6 @@ textarea {
 </head>
 <body>
 	<!-- 게시판 글쓰기 양식 영역 시작 -->
-	<jsp:include page="/main.jsp"></jsp:include>
 	<div class="controller">
 	<div id="wriTitle">게시글 작성</div>
 		<form method="post">
@@ -153,15 +159,15 @@ textarea {
 			</table>
 		</form>
 		<div>
-			<a href="boardList.do">
-				<button>게시판</button>
-			</a>
-		</div>
-		<div>
-			<a href="mainLeft.do">
-				<button>홈으로</button>
-			</a>
-		</div>
+         <a href="${path}/boardList.do?category=${cate}">
+            <button>게시판</button>
+         </a>
+      </div>
+      <div>
+         <a href="${path}/mainLeft.do">
+            <button>홈으로</button>
+         </a>
+      </div>
 	
 	</div>
 	

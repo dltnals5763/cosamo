@@ -38,6 +38,8 @@ public class MainLeftController extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		
 		
 		// 1. 요청값 처리..
 		String id = request.getParameter("id"); 
@@ -53,6 +55,12 @@ public class MainLeftController extends HttpServlet {
 		// 2. 모델 데이터 처리
 		//    1) 초기 페이지 - 초기 로그인 페이지 설정.
 		//    2) 입력 후 페이지. - 입력 후 정상일 때 페이지 설정.
+		
+		if(m != null) {
+			id = m.getId();
+			pass = m.getPass();
+		}
+		
 		if(id==null) id="";
 		if(pass==null) pass="";
 		String page = "login/login.jsp";

@@ -31,15 +31,10 @@
     .table > thead > tr > td, .table > tbody > tr > td {
       width:30%;
     }
-    .row { float:left; width:860px }
-    .table .table {border:1px solid #dee2e6;}
-    
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
-<%--
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/bootstrap.min.js"></script>
- --%>
 <script src="${path}/a00_com/jquery-ui.js"></script>
 <script type="text/javascript">
 <%--
@@ -50,70 +45,63 @@
    var proc="${param.proc}";
    if(proc=="del"){
       alert('삭제되었습니다.');
-      location.href='${path}/boardList.do';
+      location.href='${path}/boardList.do?category='+'${cate}';
    }
    
    <%--
-   var num="${param.num}";
-   function upt(){
-      location.href="${path}/writeUpdate.do?num="+num;
+   if(proc=="upt"){
+	      alert('수정되었습니다.');
+	      location.href='${path}/boardList.do';
    }
-   --%>
+	--%>
     $(document).ready(function(){
       $("#delBtn").on("click",function(){
          $("[name=proc]").val("del");
          $('form').submit();
       });
-      
+      $("#backBtn").on("click",function(){
+          location.href="${path}/boardList.do?category="+'${cate}';
+       });
       $("#uptBtn").on("click",function(){
+    	   
          $("[name=proc]").val("upt");
-         $("#frm").submit();
-         <%--
-          $("[name=proc]").val("upt");
-          var num="${dto.num}";
-          var category = "${dto.category}";
-          var title = "${dto.title}";
-          var content = "${dto.content}";
-          location.href="${path}/writeUpdate.do?num="+num+"&category="+category
-          +"&title="+title+"&content="+content;
-          --%>
-       })
-       
-       
-
-
+         $("#upt").submit();
+      });
+      
+      
       $("#comBtn").on("click",function(){
-         var tnumS = '${dto.category}';
-         var wnum = '${dto.num}';
-         console.log(tnumS);
-         console.log(wnum);
-         var tnum = 0;
-         if(tnumS == '사담')      tnum = 1;
-         else if(tnumS == 'Java')   tnum = 2;
-         else if(tnumS == 'Python')   tnum = 3;
-         else if(tnumS == 'Javascript')   tnum = 4;
-         else if(tnumS == 'html')   tnum = 5;
-         else if(tnumS == 'C/C++')   tnum = 6;
-         else if(tnumS == 'Spring')   tnum = 7;
-         //console.log(tnum);
-         //console.log(wnum);
-        $("[name=tnum]").val(tnum);
-        $("[name=wnum]").val(wnum);
-        $("#com").submit();
+    	  var tnumS = '${dto.category}';
+    	  var wnum = '${dto.num}';
+    	  console.log(tnumS);
+    	  console.log(wnum);
+    	  var tnum = 0;
+    	  if(tnumS == '사담')		tnum = 1;
+    	  else if(tnumS == 'Java')	tnum = 2;
+    	  else if(tnumS == 'Python')	tnum = 3;
+    	  else if(tnumS == 'Javascript')	tnum = 4;
+    	  else if(tnumS == 'html')	tnum = 5;
+    	  else if(tnumS == 'C/C++')	tnum = 6;
+    	  else if(tnumS == 'Spring')	tnum = 7;
+    	  //console.log(tnum);
+    	  //console.log(wnum);
+    	 $("[name=tnum]").val(tnum);
+    	 $("[name=wnum]").val(wnum);
+    	 $("#com").submit();
       });
    });
 </script>
 </head>
+<%
 
+%>
 <body>
-<jsp:include page="/main.jsp"></jsp:include>
 
 <div class="row">
     <div class="col-xs-2 col-md-2"></div>
     <div class="col-xs-8 col-md-8">
     <h2 class="text-center">게시글 보기</h2><p>&nbsp;</p>
     <div class="table table-responsive">
-    <form id="frm" method="post" action="${path}/writeUpdate.do">
+    <form method="post">
     <input type="hidden" name="proc" value=""/>
         <table class="table">
         
@@ -148,6 +136,7 @@
             <input type="hidden" name="category" value="${dto.category }">
             <input type="hidden" name="title" value="${dto.title }">
             <input type="hidden" name="content" value="${dto.content }">
+            <input type="button" value="이전" id="backBtn">
             <c:if test="${id eq dto.id }">
             <input type="submit" value="삭제" id="delBtn">
             <input type="button" value="수정" id="uptBtn">
@@ -156,23 +145,21 @@
       </tr>
         </table>
    </form>
-   <%--
-   <form id="frm" method="post" action="${path}/writeUpdate.do">
-         <input type="hidden" name="proc" value="upt"/>
-         <input type="hidden" name="num" value="${dto.num }">
+   <form id="upt" method="post" action="${path}/writeUpdate.do">
+   		<input type="hidden" name="proc" value=""/>
+   		<input type="hidden" name="num" value="${dto.num }">
         <input type="hidden" name="category" value="${dto.category }">
         <input type="hidden" name="title" value="${dto.title }">
         <input type="hidden" name="content" value="${dto.content }">
    </form>
-    --%>
    <form class="form-inline" method="post" id="com" style="display:none;"
        action="${path}/com.do">
        <input type="hidden" name="tnum" value="" />
        <input type="hidden" name="wnum" value="" />
    </form>
-      <div style="text-align:center;"><button id="comBtn">댓글보기</button></div>
-      </div>
-      </div>
+   	<div style="text-align:center;"><button id="comBtn">댓글보기</button></div>
+   </div>
+   </div>
 </div>
 </body>
 </html>

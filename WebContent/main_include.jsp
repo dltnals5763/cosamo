@@ -31,7 +31,7 @@
 <div id="mainlist">
 <div id="announce">
 		<div id="announce-text">
-			공지사항 
+			공지 글
 		</div>
 		<%-- post-all-text --%>
 		<table id="post-all-tab">
@@ -44,14 +44,14 @@
 	<%--  announce --%>
 	<div id="post-all">
 		<div id="post-all-text">
-			전체글 
+			최근 
 		</div>
 		<%--  post-all-text --%>
 		<table id="post-all-tab">
 			<tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>좋아요</th></tr>
 			<c:forEach var="b" items="${blist }" varStatus="sts">
 			<c:if test="${sts.index<=10 }">
-			<tr><td id="bcnt${sts.index }"></td><td>${b.category }</td><td>${b.title }</td><td>${b.id }</td><td>${b.reg_date }</td><td>${b.readcount }</td><td>${b.favor }</td></tr>
+			<tr class="text-center"><td id="bcnt${sts.index }"></td><td>${b.category }</td><td>${b.title }</td><td>${b.id }</td><td>${b.reg_date }</td><td>${b.readcount }</td><td>${b.favor }</td></tr>
 			</c:if>
 			</c:forEach>
 		</table>
@@ -61,6 +61,22 @@
 	<%--  mainlist --%>
 </body>
 <script>
+	$(document).ready(function(){
+		$(".text-center").on("click",function(){
+			//alert("클릭");
+			location.href="${path}/boardList.do";
+		});
+		
+		$("#span-id").on("click",function(){
+			var id = '${member.id}';
+			if(id == ""){
+				alert("로그인 필요!!");
+				return false;
+			}
+			else
+				location.href="${path}/mySelector.do";
+		});
+	})
 	var acnt = ${alist.size()};
 	var idxcnt1 = acnt;
 	for(var idx=0;idx < acnt;idx++){
@@ -72,6 +88,7 @@
 	for(var idx=0;idx < bcnt;idx++){
 		document.getElementById("bcnt"+idx).innerHTML = idxcnt2--;
 	}
+	
 </script>
 </html>
 

@@ -106,7 +106,9 @@
          
         <tr height="250px">
             <th class="success" id="content">글 내용</th>
-            <td colspan="3"><input type="text" name="content" value="${dto.content }"/></td>
+            <td colspan="3"><textarea rows="7" cols="90" name="content">${dto.content}
+               </textarea></td>
+
         </tr>
 		<tr>
 			<td colspan="4" align="right">
@@ -122,7 +124,10 @@
 		</tr>
         </table>
 	</form>
-	
+	<div>
+		<a href="${path}/noticeList.do"><button>게시판</button></a>
+          		<a href="${path}/mainLeft.do"><button>홈으로</button></a>
+	</div>
 </div>
 </body>
 </html>

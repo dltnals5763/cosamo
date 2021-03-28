@@ -18,9 +18,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-<style type="text/css">
-.container { float:left; width:830px; margin:10px 10px 0; box-sizing:border-box;}
-</style> 
 <script type="text/javascript"
 	src="${path}/a00_com/jquery-3.5.1.js"></script>
 <script src="${path}/a00_com/jquery.min.js"></script>
@@ -32,7 +29,7 @@
  
  
 --%>
-//
+
    $(document).ready(function(){
       $(".data").on("click",function(){
     	  var num = $(this).children().eq(0).text();
@@ -46,8 +43,9 @@
 </head>
 
 <body>
+<jsp:include page="../../main.jsp" flush="false"/>
+<div id="mainlist">
 	<!-- 게시판 메인 페이지 영역 시작 -->
-	<jsp:include page="/main.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
@@ -90,5 +88,6 @@
 	<!-- 부트스트랩 참조 영역 -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+</div>
 </body>
 </html>

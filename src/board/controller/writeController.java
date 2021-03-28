@@ -42,8 +42,10 @@ public class writeController extends HttpServlet {
 		// 요청값 처리
 		String id = (String)session.getAttribute("id");
 		System.out.println("##id값:"+id);
+		
 		String category = request.getParameter("category"); 
 		request.setAttribute("category", category);
+		
 		if(category ==null) category="";
 		String title = request.getParameter("title"); 
 		if(title ==null) title="";
@@ -55,6 +57,8 @@ public class writeController extends HttpServlet {
 			BoardDao dao = new BoardDao();
 			BoardDTO ins = new BoardDTO(id,title,category,content);
 			dao.insertWrite(ins);
+			// postcnt ++ dao
+			dao.PlusPostCnt(id);
 		};
 		// view단 호출
 		

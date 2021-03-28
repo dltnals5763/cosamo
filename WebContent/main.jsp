@@ -32,7 +32,7 @@
 <body>
 	<div id="container">
 		<div id="banner">
-			<img id="banner" src="${path}/image/image-main/cosamo.jpg" onclick="location.href='${path}/main_include.jsp'">
+			<img id="banner" src="${path}/image/image-main/cosamo.jpg" onclick="location.href='${path}/mainLeft.do'">
 		</div>
 		<%--  banner --%>
 		<div id="main">
@@ -48,7 +48,7 @@
 							<c:if test="${member!=null}"><li><span id="span-id">${member.id }</span>님</li></c:if>
 							<c:if test="${member==null }"><li><span id="span-id"> - </span></li></c:if>
 							<li>LEVEL<span id="span-level">${grade.grade}</span></li>
-							<li>게시글 수<span id="span-write">${member.postcnt }</span></li>
+							<li>게시글 수<span id="span-write">${member.postcnt}</span></li>
 							<li>댓글 수<span id="span-comment">${member.commentcnt }</span></li>
 						</ul>
 					</div>

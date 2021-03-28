@@ -32,6 +32,14 @@ public class Member {
 	}
 	
 	
+	public Member(String id, String pass, String name, String email) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.email = email;
+	}
+
 	public Member(String id, String pass, String name, String email, int postcnt, int commentcnt, int warncnt,
 			String grade) {
 		super();

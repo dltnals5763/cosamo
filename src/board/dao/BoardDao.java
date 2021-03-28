@@ -91,6 +91,50 @@ public class BoardDao {
 	         System.out.println(e.getMessage());
 	      }
 	   }
+	   
+	   public void PlusPostCnt(String id) {
+			//Test m = null;
+			try {
+				setCon();
+				String sql ="UPDATE member \r\n"
+						+ "	SET postcnt = postcnt+1\r\n"
+						+ "	WHERE id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,id);
+				
+				rs = pstmt.executeQuery();
+				
+				rs.close();
+				pstmt.close();
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	   
+	   public void MinusPostCnt(String id) {
+			//Test m = null;
+			try {
+				setCon();
+				String sql ="UPDATE member \r\n"
+						+ "	SET postcnt = postcnt-1\r\n"
+						+ "	WHERE id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,id);
+				
+				rs = pstmt.executeQuery();
+				
+				rs.close();
+				pstmt.close();
+				con.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 
 
 	// 글 수정
